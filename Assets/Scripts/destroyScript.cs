@@ -10,7 +10,7 @@ public class destroyScript : MonoBehaviour {
 
 	public void destroyEnemy(GameObject objectToDestroy)
 	{
-		GameObject.Find ("DemageZone").SendMessage ("removeFromList", objectToDestroy);
+		GameObject.Find ("DamageZone").SendMessage ("removeFromList", objectToDestroy);
 		Destroy (objectToDestroy);
 	}
 
