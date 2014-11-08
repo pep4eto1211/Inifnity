@@ -3,9 +3,10 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour {
 
-	private Transform groundCheck;			// A position marking where to check if the player is grounded.
-	private bool isGrounded = false;	//Bool checking if the playr is on the ground
-	private bool isJumping = false; //If the player is jumping 
+	private Transform groundCheck;				// A position marking where to check if the player is grounded.
+	private bool isGrounded = false;			//Bool checking if the playr is on the ground
+	private bool isJumping = false; 			//If the player is jumping 
+	private bool isUnderGrounded = false; 		//if the player is hitting underground
 	public float maxSpeed = 3f;
 	public float moveForce = 365f;
 	public float jumpForce;
@@ -30,6 +31,8 @@ public class PlayerControl : MonoBehaviour {
 			//Jump if possible
 			isJumping = true;
 		}
+
+		isUnderGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("UnderGround"));
 	}
 
 	void FixedUpdate()
@@ -43,6 +46,10 @@ public class PlayerControl : MonoBehaviour {
 			anim.SetFloat ("Speed", Mathf.Abs (horizontalAxis));
 		}
 
+		if (isUnderGrounded) 
+		{
+			Application.LoadLevel(Application.loadedLevelName);
+		}
 		//If speed is lower than the maximum...
 		if (horizontalAxis * rigidbody2D.velocity.x < maxSpeed) 
 		{
@@ -91,117 +98,6 @@ public class PlayerControl : MonoBehaviour {
 		transform.localScale = theScale;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
