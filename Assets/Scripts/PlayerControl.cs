@@ -91,7 +91,7 @@ public class PlayerControl : MonoBehaviour {
 
 	public void killAnimation()
 	{
-		GameObject.Find ("Hero").GetComponent<Animator> ().SetBool ("isAttacking", false);
+		GameObject.Find ("TheGoodHero").GetComponent<Animator> ().SetBool ("isAttacking", false);
 	}
 
 	void Flip ()
