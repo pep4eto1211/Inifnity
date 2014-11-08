@@ -1,7 +1,9 @@
 fileFormatVersion: 2
-guid: d073b4767f3360340bb805ad26af7bbe
+guid: 36020d5b9616a3a4bbc2e3b1f7c70117
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: FrontShoe
+    21300002: BackShoe
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -27,21 +29,41 @@ TextureImporter:
     filterMode: -1
     aniso: 16
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spriteBorder: {x: 98, y: 120, z: 158, w: 44}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: FrontShoe
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 4
+        width: 82
+        height: 57
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BackShoe
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 7
+        width: 77
+        height: 51
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

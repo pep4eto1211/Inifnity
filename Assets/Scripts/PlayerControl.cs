@@ -12,14 +12,14 @@ public class PlayerControl : MonoBehaviour {
 	[HideInInspector]
 	public bool facingRight = true;	
 
-	public int value;
-	
 	private Animator anim;
+
+	public int value;
 
 	void Awake () 
 	{
 		groundCheck = transform.Find("GroundCheck");
-		//anim = GetComponent<Animator>();
+		anim = GetComponent<Animator>();
 	}
 
 	void Update () 
@@ -40,6 +40,7 @@ public class PlayerControl : MonoBehaviour {
 		if (isGrounded) 
 		{
 			horizontalAxis = Input.GetAxis("Horizontal");
+			anim.SetFloat ("Speed", Mathf.Abs (horizontalAxis));
 		}
 
 		//If speed is lower than the maximum...

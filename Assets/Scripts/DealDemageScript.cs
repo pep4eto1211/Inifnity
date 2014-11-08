@@ -32,12 +32,17 @@ public class DealDemageScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetButtonDown("Fire1")) 
+		if (Input.GetButtonDown ("Fire1")) 
 		{
+			GameObject.Find ("Hero").GetComponent<Animator> ().SetBool ("isAttacking", true);
 			foreach (GameObject item in objectsInDangerZone) 
 			{
-				item.SendMessage("receiveDemage", demageDeal);
+				item.SendMessage ("receiveDemage", demageDeal);
 			}
+		} 
+		else 
+		{
+			GameObject.Find ("Hero").GetComponent<Animator> ().SetBool ("isAttacking", false);
 		}
 	}
 
