@@ -5,6 +5,7 @@ public class enemyScript : MonoBehaviour {
 
 	public int value;
 	public int demageResistance;
+	public float speed;
 
 	// Use this for initialization
 	void Start () {
@@ -21,8 +22,66 @@ public class enemyScript : MonoBehaviour {
 		}
 	}
 
+	public float direction = 1;
+
+	public void FlipEnemy()
+	{
+		direction *= -1;
+	}
+
 	// Update is called once per frame
-	void Update () {
-	
+	void FixedUpdate () {
+		rigidbody2D.velocity = new Vector2 (direction * speed, rigidbody2D.velocity.y);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
