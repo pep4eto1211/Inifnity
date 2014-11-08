@@ -18,6 +18,7 @@ public class DealDamageScript : MonoBehaviour {
 		if (e.gameObject.tag == "Enemy") 
 		{
 			objectsInDangerZone.Add(e.gameObject);
+			Debug.Log (e.name);
 		}
 	}
 

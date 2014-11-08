@@ -10,7 +10,6 @@ public class pigFlyingScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		startX = this.transform.localPosition.x;
-		Debug.Log ("position " + this.startX.ToString ());
 	}
 
 	public void receiveDamage(int receivedDamage)

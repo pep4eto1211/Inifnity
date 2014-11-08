@@ -4,7 +4,7 @@ using System.Collections;
 public class enemyScript : MonoBehaviour {
 
 	public int value;
-	public int demageResistance;
+	public int Health;
 	public float speed;
 
 	// Use this for initialization
@@ -12,12 +12,12 @@ public class enemyScript : MonoBehaviour {
 	
 	}
 
-	public void receiveDemage(int receivedDemage)
+	public void receiveDamage(int receivedDamage)
 	{
-		demageResistance -= receivedDemage;
-		if (demageResistance<0) 
+		Health -= receivedDamage;
+		if (Health<0) 
 		{
-			GameObject.Find("TheGoodHero").SendMessage("receiveValue", Mathf.Abs(demageResistance));
+			GameObject.Find("TheGoodHero").SendMessage("receiveValue", Mathf.Abs(Health));
 			GameObject.Find("Enemies").SendMessage("destroyEnemy", this.gameObject);
 		}
 	}
