@@ -34,8 +34,8 @@ public class DealDemageScript : MonoBehaviour {
 	{
 		if (Input.GetButtonDown ("Fire1")) 
 		{
-			GameObject.Find ("Hero").GetComponent<Animator> ().SetBool ("isAttacking", true);
-			Debug.Log("Bool sent");
+			GameObject.Find ("TheGoodHero").GetComponent<Animator> ().SetBool ("isAttacking", true);
+			//Debug.Log("Bool sent");
 			foreach (GameObject item in objectsInDangerZone) 
 			{
 				item.SendMessage ("receiveDemage", demageDeal);
