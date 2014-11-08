@@ -1,0 +1,208 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class PlayerControl : MonoBehaviour {
+
+	private Transform groundCheck;			// A position marking where to check if the player is grounded.
+	private bool isGrounded = false;	//Bool checking if the playr is on the ground
+	private bool isJumping = false; //If the player is jumping 
+	public float maxSpeed = 3f;
+	public float moveForce = 365f;
+	public float jumpForce;
+	[HideInInspector]
+	public bool facingRight = true;	
+
+	public int value;
+	
+	private Animator anim;
+
+	void Awake () 
+	{
+		groundCheck = transform.Find("GroundCheck");
+		//anim = GetComponent<Animator>();
+	}
+
+	void Update () 
+	{
+		//Check if the player is on the ground
+		isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+		if (Input.GetButtonDown ("Jump") && isGrounded) {
+			//Jump if possible
+			isJumping = true;
+		}
+	}
+
+	void FixedUpdate()
+	{
+		//Reading the user input on the Horizontal axis
+		float horizontalAxis = 0;
+
+		if (isGrounded) 
+		{
+			horizontalAxis = Input.GetAxis("Horizontal");
+		}
+
+		//If speed is lower than the maximum...
+		if (horizontalAxis * rigidbody2D.velocity.x < maxSpeed) 
+		{
+			//Add force to the direction from the input
+			rigidbody2D.AddForce (Vector2.right * horizontalAxis * moveForce);
+		}
+
+		//If the speed is bigger...
+		if (Mathf.Abs (rigidbody2D.velocity.x) > maxSpeed) 
+		{
+			//Set the speed to be tha maximum speed
+			rigidbody2D.velocity = new Vector2 (Mathf.Sign (rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
+		}
+
+		//If the horizontal input is to the right and we are looking left
+		if (horizontalAxis > 0 && !facingRight) 
+		{
+			Flip ();
+		} 
+		//The same but for the other direction
+		else if (horizontalAxis < 0 && facingRight) 
+		{
+			Flip ();
+		}
+
+		//If the player wants to jump and is allowed to
+		if(isJumping)
+		{
+			//Add force to  the hero to fire him up
+			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+			isJumping = false;
+		}
+	}
+
+	public void receiveValue(int valueToReceive)
+	{
+		value += valueToReceive;
+	}
+
+	void Flip ()
+	{
+		//Flip the hero the other way around
+		facingRight = !facingRight;
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
