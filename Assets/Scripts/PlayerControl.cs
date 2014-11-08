@@ -12,7 +12,7 @@ public class PlayerControl : MonoBehaviour {
 	[HideInInspector]
 	public bool facingRight = true;	
 
-	private Animator anim;
+	private Animator anim = new Animator ();
 
 	public int value;
 
@@ -80,6 +80,11 @@ public class PlayerControl : MonoBehaviour {
 	public void receiveValue(int valueToReceive)
 	{
 		value += valueToReceive;
+	}
+
+	public void killAnimation()
+	{
+		GameObject.Find ("Hero").GetComponent<Animator> ().SetBool ("isAttacking", false);
 	}
 
 	void Flip ()
