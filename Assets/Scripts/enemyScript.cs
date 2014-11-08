@@ -17,7 +17,7 @@ public class enemyScript : MonoBehaviour {
 		demageResistance -= receivedDemage;
 		if (demageResistance<0) 
 		{
-			GameObject.Find("Hero").SendMessage("receiveValue", Mathf.Abs(demageResistance));
+			GameObject.Find("TheGoodHero").SendMessage("receiveValue", Mathf.Abs(demageResistance));
 			GameObject.Find("Enemies").SendMessage("destroyEnemy", this.gameObject);
 		}
 	}
