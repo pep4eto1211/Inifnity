@@ -79,6 +79,15 @@ public class PlayerControl : MonoBehaviour {
 		}
 	}
 
+	void OnCollisionEnter2D(Collision2D e)
+	{
+		if(e.gameObject.tag == "Function")
+		{
+			e.gameObject.SendMessage("ActionFunction", value);
+		}
+		//Debug.Log ("Collision");
+	}
+
 	public void receiveValue(int valueToReceive)
 	{
 		value += valueToReceive;
@@ -97,7 +106,47 @@ public class PlayerControl : MonoBehaviour {
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+
+	public void Functionaized(int newValue)
+	{
+		value = newValue;	
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
