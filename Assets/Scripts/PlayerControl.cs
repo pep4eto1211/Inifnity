@@ -38,13 +38,8 @@ public class PlayerControl : MonoBehaviour {
 	void FixedUpdate()
 	{
 		//Reading the user input on the Horizontal axis
-		float horizontalAxis = 0;
-
-		if (isGrounded) 
-		{
-			horizontalAxis = Input.GetAxis("Horizontal");
-			anim.SetFloat ("Speed", Mathf.Abs (horizontalAxis));
-		}
+		horizontalAxis = Input.GetAxis("Horizontal");
+		anim.SetFloat ("Speed", Mathf.Abs (horizontalAxis));
 
 		if (isUnderGrounded) 
 		{
