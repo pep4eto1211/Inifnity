@@ -32,7 +32,7 @@ public class stoneScript : MonoBehaviour {
 	{
 		if(e.gameObject.tag == "Function")
 		{
-			e.gameObject.SendMessage("ActionFunction", value);
+			e.gameObject.SendMessage("ActionFunctionPassive", value);
 		}
 		//Debug.Log ("Collision");
 	}
@@ -40,6 +40,12 @@ public class stoneScript : MonoBehaviour {
 	public void Functionaized(int newValue)
 	{
 		value = newValue;
+		if (value > 0) 
+		{
+			GameObject newPowerUp = Instantiate (spawnObject, this.transform.position, Quaternion.identity) as GameObject;
+			newPowerUp.SendMessage ("SetValue", value);
+		}
+		Destroy (this.gameObject);
 	}
 	
 	// Update is called once per frame
@@ -47,3 +53,37 @@ public class stoneScript : MonoBehaviour {
 	
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -27,6 +27,13 @@ public class EvilMinusScript : MonoBehaviour {
 		GameObject.FindWithTag ("Player").SendMessage ("Functionaized", value - 20);
 		GameObject.Find ("Functions").SendMessage ("destroyEnemy", this.gameObject);
 	}
+
+	public void ActionFunctionPassive(int value)
+	{
+		GameObject.FindWithTag ("Stones").SendMessage ("Functionaized", value - 20);
+		GameObject.Find ("Functions").SendMessage ("destroyEnemy", this.gameObject);
+	}
+
 }
 
 
