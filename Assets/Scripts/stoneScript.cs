@@ -40,6 +40,7 @@ public class stoneScript : MonoBehaviour {
 	public void Functionaized(int newValue)
 	{
 		value = newValue;
+		Debug.Log (value);
 		if (value > 0) 
 		{
 			GameObject newPowerUp = Instantiate (spawnObject, this.transform.position, Quaternion.identity) as GameObject;
