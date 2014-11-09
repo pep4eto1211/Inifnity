@@ -18,7 +18,7 @@ public class PlayerControl : MonoBehaviour {
 
 	private Animator anim = new Animator ();
 
-	public int value;
+	public static int value = 21;
 
 	void Awake () 
 	{
@@ -143,6 +143,7 @@ public class PlayerControl : MonoBehaviour {
 	public void receiveValue(int valueToReceive)
 	{
 		value += valueToReceive;
+		GameObject.Find ("updatesText").SendMessage ("showUpdate", "+" + valueToReceive.ToString ());
 	}
 
 	public void killAnimation()
@@ -161,6 +162,14 @@ public class PlayerControl : MonoBehaviour {
 
 	public void Functionaized(int newValue)
 	{
+		if (newValue > value) 
+		{
+			GameObject.Find ("updatesText").SendMessage ("showUpdate", "+" + (newValue - value).ToString ());
+		}
+		else 
+		{
+			GameObject.Find ("updatesText").SendMessage ("showUpdate", "-" + (value-newValue).ToString ());
+		}
 		value = newValue;	
 	}
 
