@@ -62,6 +62,11 @@ public class PlayerControl : MonoBehaviour {
 		float horizontalAxis = Input.GetAxis("Horizontal");
 		anim.SetFloat ("Speed", Mathf.Abs (horizontalAxis));
 
+		if(Input.GetKey(KeyCode.Escape))
+		{
+			Application.LoadLevel(0);
+		}
+
 		if (value < 0) 
 		{
 			Application.LoadLevel(Application.loadedLevel);
