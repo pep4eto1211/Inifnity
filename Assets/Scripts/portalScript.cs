@@ -13,6 +13,7 @@ public class portalScript : MonoBehaviour {
 		if (e.gameObject.tag == "Player") 
 		{
 			Application.LoadLevel(Application.loadedLevel + 1);
+			PlayerPrefs.SetInt("PlayerValue", PlayerControl.value);
 		}
 	}
 
