@@ -63,6 +63,16 @@ public class PlayerControl : MonoBehaviour {
 		{
 			Application.LoadLevel(Application.loadedLevelName);
 		}
+
+		if (isGrounded && horizontalAxis != 0) 
+		{
+			transform.FindChild ("Trail").particleEmitter.emit = true;
+		}
+		else 
+		{
+			transform.FindChild ("Trail").particleEmitter.emit = false;
+		}
+
 		//If speed is lower than the maximum...
 		if (horizontalAxis * rigidbody2D.velocity.x < maxSpeed) 
 		{
