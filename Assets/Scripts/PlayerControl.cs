@@ -15,15 +15,18 @@ public class PlayerControl : MonoBehaviour {
 	private bool isStoneAvailable = false;
 	private GameObject stoneObject;
 	private bool isArmed = false;
+	private int initialHealth;
 
 	private Animator anim = new Animator ();
 
-	public static int value = 21;
+	public static int value;
 
 	void Awake () 
 	{
 		groundCheck = transform.Find("GroundCheck");
 		anim = GetComponent<Animator>();
+		value = PlayerPrefs.GetInt("PlayerValue");
+		initialHealth = value;
 	}
 
 	void StoneAvailable(GameObject currentStone)
