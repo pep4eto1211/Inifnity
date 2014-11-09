@@ -62,6 +62,11 @@ public class PlayerControl : MonoBehaviour {
 		float horizontalAxis = Input.GetAxis("Horizontal");
 		anim.SetFloat ("Speed", Mathf.Abs (horizontalAxis));
 
+		if (value < 0) 
+		{
+			Application.LoadLevel(Application.loadedLevel);
+		}
+
 		if (isUnderGrounded) 
 		{
 			Application.LoadLevel(Application.loadedLevelName);
