@@ -2,16 +2,17 @@
 
 var speed 				: float = 5.0f;
 var xRange				: float = 10.0f;	// move [range] units to the left and the right
+var yScale 				: float = 2.0f;
 
-private var xStart 		: float = 0.0f;
+private var startPos 	: Vector3;
 private var direction 	: int 	= 1;
 private var leftBorder 	: float = 0.0f;
 private var rightBorder : float = 0.0f;
 
 function Start () {
-	xStart = this.transform.position.x;
-	leftBorder = xStart - xRange;
-	rightBorder = xStart + xRange;
+	startPos = this.transform.position;
+	leftBorder = startPos.x - xRange;
+	rightBorder = startPos.x + xRange;
 }
 
 function Update () {
@@ -24,4 +25,5 @@ function Update () {
 	}
 	
 	this.transform.position.x += direction * speed * Time.deltaTime;
+	this.transform.position.y = startPos.y + Mathf.Sin(this.transform.position.x) * yScale;
 }
