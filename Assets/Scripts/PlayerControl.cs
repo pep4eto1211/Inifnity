@@ -12,15 +12,33 @@ public class PlayerControl : MonoBehaviour {
 	public float jumpForce;
 	[HideInInspector]
 	public bool facingRight = true;	
+	private bool isStoneAvailable = false;
+	private GameObject stoneObject;
+	private bool isArmed = false;
 
 	private Animator anim = new Animator ();
 
-	public int value;
+	public static int value = 21;
 
 	void Awake () 
 	{
 		groundCheck = transform.Find("GroundCheck");
 		anim = GetComponent<Animator>();
+	}
+
+	void StoneAvailable(GameObject currentStone)
+	{
+		isStoneAvailable = true;
+		stoneObject = currentStone;
+	}
+
+	void StoneUnavailable()
+	{
+		if (!isArmed) 
+		{
+			isStoneAvailable = false;
+			stoneObject = null;
+		}
 	}
 
 	void Update () 
@@ -45,11 +63,51 @@ public class PlayerControl : MonoBehaviour {
 		{
 			Application.LoadLevel(Application.loadedLevelName);
 		}
+
+		if (isGrounded && horizontalAxis != 0) 
+		{
+			transform.FindChild ("Trail").particleEmitter.emit = true;
+		}
+		else 
+		{
+			transform.FindChild ("Trail").particleEmitter.emit = false;
+		}
+
 		//If speed is lower than the maximum...
 		if (horizontalAxis * rigidbody2D.velocity.x < maxSpeed) 
 		{
 			//Add force to the direction from the input
 			rigidbody2D.AddForce (Vector2.right * horizontalAxis * moveForce);
+		}
+
+		if (Input.GetButtonDown ("Fire2")) 
+		{
+			if(!isArmed)
+			{
+				if(isStoneAvailable)
+				{
+					stoneObject.SetActive(false);
+					isArmed = true;
+				}
+			}
+			else
+			{
+				Vector2 mousePosition;
+				if(Input.mousePosition.x  <  Screen.width/2)
+				{
+					mousePosition = new Vector2((Screen.width-Input.mousePosition.x) * -1, Input.mousePosition.y);
+				}
+				else
+				{
+					mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+				}
+				stoneObject.transform.position = new Vector2(transform.position.x, transform.position.y+4);
+				isArmed = false;
+				isStoneAvailable = false;
+				stoneObject.SetActive(true);
+				stoneObject.rigidbody2D.AddForce(mousePosition, ForceMode2D.Force);
+				stoneObject = null;
+			}
 		}
 
 		//If the speed is bigger...
@@ -85,12 +143,17 @@ public class PlayerControl : MonoBehaviour {
 		{
 			e.gameObject.SendMessage("ActionFunction", value);
 		}
+		if (e.gameObject.tag == "Stones")
+		{
+			Debug.Log("Stone Enter");
+		}
 		//Debug.Log ("Collision");
 	}
 
 	public void receiveValue(int valueToReceive)
 	{
 		value += valueToReceive;
+		GameObject.Find ("updatesText").SendMessage ("showUpdate", "+" + valueToReceive.ToString ());
 	}
 
 	public void killAnimation()
@@ -109,6 +172,14 @@ public class PlayerControl : MonoBehaviour {
 
 	public void Functionaized(int newValue)
 	{
+		if (newValue > value) 
+		{
+			GameObject.Find ("updatesText").SendMessage ("showUpdate", "+" + (newValue - value).ToString ());
+		}
+		else 
+		{
+			GameObject.Find ("updatesText").SendMessage ("showUpdate", "-" + (value-newValue).ToString ());
+		}
 		value = newValue;	
 	}
 
